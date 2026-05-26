@@ -347,6 +347,60 @@ const LINKS = {
     border:0;
   }
 
+  /* ---------- LYRICS ---------- */
+  .lyrics{
+    margin:18px 0 4px;
+    text-align:left;
+    border:1px solid rgba(217,150,52,.3);
+    border-radius:2px;
+    background:rgba(20,12,4,.55);
+  }
+  .lyrics > summary{
+    list-style:none;
+    cursor:pointer;
+    padding:12px 16px;
+    font-family:"Courier New",monospace;
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+    text-align:center;
+    user-select:none;
+    transition:color .15s;
+  }
+  .lyrics > summary::-webkit-details-marker{ display:none; }
+  .lyrics > summary::after{
+    content:"  +";
+    color:var(--amber-bright);
+    font-weight:700;
+  }
+  .lyrics[open] > summary::after{ content:"  \2212"; }
+  .lyrics > summary:hover{ color:var(--amber-bright); }
+  .lyrics-body{
+    padding:8px 22px 24px;
+    color:var(--cream);
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:.97rem;
+    line-height:1.65;
+    border-top:1px solid rgba(217,150,52,.18);
+    margin-top:0;
+  }
+  .lyrics-body p{
+    margin:0 0 1em;
+    white-space:pre-line;
+  }
+  .lyrics-body .chorus{
+    font-style:italic;
+    color:var(--amber-bright);
+    padding-left:14px;
+    border-left:2px solid rgba(217,150,52,.45);
+  }
+  .lyrics-body .final{
+    margin-top:1.4em;
+    padding-top:1.2em;
+    border-top:1px dashed rgba(217,150,52,.25);
+  }
+
   /* ---------- STAR / PROFILE ---------- */
   .profile{
     display:flex;
@@ -482,6 +536,77 @@ const LINKS = {
     <div class="bc-player">
       <iframe title="Live and Forgive — Bandcamp player" loading="lazy" src="https://bandcamp.com/EmbeddedPlayer/track=1885322812/size=small/bgcol=1f1408/linkcol=e99708/transparent=true/" seamless><a href="https://scarsandspikes.bandcamp.com/track/live-and-forgive">Live and Forgive by Scars and Spikes</a></iframe>
     </div>
+
+    <details class="lyrics">
+      <summary>Read the lyrics</summary>
+      <div class="lyrics-body">
+        <p>My dad and my uncle fought in Vietnam
+Their dad and their uncles before them stood strong
+For a country, a people who believed in the flag
+That stood for unity, strength and justice for all</p>
+
+        <p>Our leaders keep leading with promise and pleas
+While we keep on drowning in tax and disease
+The walls built between us divide by design
+The wealthy get fatter while we all pick sides</p>
+
+        <p class="chorus">What ever happened to live and let live
+What ever happened to try and forgive
+We are killing our country our daughters our sons
+For party, for privilege, but not for freedom.</p>
+
+        <p>Not free to be you not free to be me
+Not free to believe and not free to see
+Not free to occupy the places we made
+Not safe for our kids in the streets where we played</p>
+
+        <p>Want to sit on my porch with my friends and a beer
+Watch the kids play outside without any fear
+But the news keeps on screaming and the algorithms know
+Keep us divided, keep us watching the show</p>
+
+        <p class="chorus">What ever happened to live and let live
+What ever happened to try and forgive
+We are killing our country our daughters our sons
+For party, for privilege, but not for freedom</p>
+
+        <p>The suits make their speeches, the cameras all roll
+But the words and the actions don&rsquo;t match anymore
+They promise protection, they promise us peace
+Then lock all the doors and then swallow the keys</p>
+
+        <p>They talk about justice from way up on high
+While the rest of us work and the rest of us try
+They tell us be patient, the system works slow
+But it seems to work fast when there&rsquo;s money to owe</p>
+
+        <p class="chorus">What ever happened to live and let live
+What ever happened to try and forgive
+We are killing our country our daughters our sons
+For party, for privilege, but not for freedom</p>
+
+        <p>They speak from the podiums, hands on their hearts
+While the truth gets buried and the system falls apart
+They say it&rsquo;s for safety, they say it&rsquo;s for peace
+But the people they&rsquo;re protecting ain&rsquo;t you and me</p>
+
+        <p>What would my dad say if he saw us today
+Fighting the wrong fight in the wrong kind of way
+He didn&rsquo;t bleed overseas for the left or the right
+He bled for the neighbor who&rsquo;d help in the night</p>
+
+        <p class="chorus">What ever happened to live and let live
+What ever happened to try and forgive
+We are killing our country our daughters our sons
+For party, for privilege, but not for freedom</p>
+
+        <p class="final">What would my Dad say if he saw us today
+He&rsquo;d close his tired eyes and he&rsquo;d softly pray
+Lord they&rsquo;re all someone&rsquo;s baby, every soul on this earth
+Each life is precious, same infinite worth</p>
+      </div>
+    </details>
+
     <a class="btn bandcamp" id="lnk-bandcamp" href="#" target="_blank" rel="noopener">
       <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 18.75 6.5 5.25H24l-6.5 13.5H0Z"/></svg>
       Buy on Bandcamp
