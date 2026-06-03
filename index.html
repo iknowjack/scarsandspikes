@@ -768,12 +768,22 @@ Each life is precious, same infinite worth</p>
     "lnk-follow":   "spotify_follow",
     "lnk-bandcamp": "bandcamp"
   };
+  // Capture UTM params once so each StreamClick carries its traffic source,
+  // letting you see e.g. "Meta ad click -> Spotify tap" in one report.
+  const params = new URLSearchParams(location.search);
+  const utm = {};
+  ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(k => {
+    const v = params.get(k);
+    if (v) utm[k] = v;
+  });
+
   for (const [id, platform] of Object.entries(TRACK)) {
     const el = document.getElementById(id);
     if (!el) continue;
     el.addEventListener("click", () => {
-      if (window.fbq)  fbq("trackCustom", "StreamClick", { platform: platform });
-      if (window.gtag) gtag("event", "stream_click", { platform: platform });
+      const payload = Object.assign({ platform: platform }, utm);
+      if (window.fbq)  fbq("trackCustom", "StreamClick", payload);
+      if (window.gtag) gtag("event", "stream_click", payload);
     });
   }
 
