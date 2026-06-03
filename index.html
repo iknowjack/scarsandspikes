@@ -26,14 +26,21 @@
 <link rel="icon" href="img/star.webp" type="image/webp">
 <link rel="preload" as="image" href="img/header.webp" type="image/webp">
 
-<!-- Analytics — privacy-friendly. Uncomment ONE block after creating an account. -->
-<!-- Plausible (recommended; no cookie banner needed):
-<script defer data-domain="scarsandspikes.com" src="https://plausible.io/js/script.js"></script>
--->
-<!-- Google Analytics 4 (replace G-XXXXXXXXXX with your Measurement ID):
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
--->
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-121X7R1MWZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-121X7R1MWZ');</script>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2486122738483036');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2486122738483036&ev=PageView&noscript=1"/></noscript>
 
 <!-- =============================================================== -->
 <!-- LINK CONFIG — live streaming links (out now).                   -->
@@ -748,6 +755,28 @@ Each life is precious, same infinite worth</p>
     const el = document.getElementById(id);
     if (el && href) el.href = href;
   }
+
+  // Analytics: fire a click event on each outbound music button, to both
+  // Meta Pixel (custom "StreamClick") and GA4 ("stream_click").
+  const TRACK = {
+    "lnk-spotify":  "spotify",
+    "lnk-apple":    "apple_music",
+    "lnk-amazon":   "amazon_music",
+    "lnk-youtube":  "youtube_music",
+    "lnk-tidal":    "tidal",
+    "lnk-deezer":   "deezer",
+    "lnk-follow":   "spotify_follow",
+    "lnk-bandcamp": "bandcamp"
+  };
+  for (const [id, platform] of Object.entries(TRACK)) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    el.addEventListener("click", () => {
+      if (window.fbq)  fbq("trackCustom", "StreamClick", { platform: platform });
+      if (window.gtag) gtag("event", "stream_click", { platform: platform });
+    });
+  }
+
   document.getElementById("yr").textContent = new Date().getFullYear();
 </script>
 </body>
